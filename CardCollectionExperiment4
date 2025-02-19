@@ -1,0 +1,63 @@
+import java.util.*;
+
+class CardCollection {
+    private Collection<Card> cards;
+    
+    public CardCollection() {
+        this.cards = new ArrayList<>();
+    }
+    
+    public void addCard(String name, String symbol) {
+        cards.add(new Card(name, symbol));
+    }
+    
+    public List<Card> getCardsBySymbol(String symbol) {
+        List<Card> result = new ArrayList<>();
+        for (Card card : cards) {
+            if (card.getSymbol().equals(symbol)) {
+                result.add(card);
+            }
+        }
+        return result;
+    }
+    
+    public void displayCards() {
+        for (Card card : cards) {
+            System.out.println(card);
+        }
+    }
+}
+
+class Card {
+    private String name;
+    private String symbol;
+    
+    public Card(String name, String symbol) {
+        this.name = name;
+        this.symbol = symbol;
+    }
+    
+    public String getSymbol() {
+        return symbol;
+    }
+    
+    @Override
+    public String toString() {
+        return "Card{name='" + name + "', symbol='" + symbol + "'}";
+    }
+}
+
+public class CardManager {
+    public static void main(String[] args) {
+        CardCollection collection = new CardCollection();
+        collection.addCard("Ace", "Spades");
+        collection.addCard("King", "Hearts");
+        collection.addCard("Queen", "Spades");
+        collection.addCard("Jack", "Diamonds");
+        
+        List<Card> spadeCards = collection.getCardsBySymbol("Spades");
+        for (Card card : spadeCards) {
+            System.out.println(card);
+        }
+    }
+}
